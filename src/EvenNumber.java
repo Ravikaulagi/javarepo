@@ -6,6 +6,7 @@ public class EvenNumber
         System.out.println("enter the number" );
         Scanner s=new Scanner(System.in);
         int num=s.nextInt();
+        System.out.println("output");
         if(num==1)
         {
             System.out.println(1);
