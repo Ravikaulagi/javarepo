@@ -1,12 +1,14 @@
+
 import java.util.Scanner;
 
 public class TwoDimenArray
 {
     public static void main(String[] args) {
         System.out.println("enter the length of the array");
-        int dig1=0,dig2=0;
+        int row=0,for_dig=0,col=0,back_dig=0;
         Scanner s=new Scanner(System.in);
         int len=s.nextInt();
+      //  int n=len-1;
         int arr[][]=new int[len][len];
         for(int i=0;i<len;i++)
         {
@@ -17,26 +19,29 @@ public class TwoDimenArray
         }
         for(int i=0;i<len;i++)
         {
-            for(int j=0;j<len;j++)
+            for (int j = 0; j < len; j++)
             {
-                if(i==j)
+                if (i == j)
                 {
-                    dig1+=arr[i][j];
+                    for_dig += arr[i][i];
                 }
-                if(i+j+1==len)
-                {
-                    dig2+=arr[i][j];
-                }
+                
+                row += arr[i][j];
+                col += arr[j][i];
             }
+
+                back_dig += arr[i][len-1-i];
+
         }
-        if(dig1==dig2)
+        for_dig =for_dig*len;
+        back_dig = back_dig*len;
+        if(row==col&&col==for_dig&&col==back_dig&&for_dig==back_dig)
         {
-            System.out.println("Yes");
+            System.out.println("yes");
         }
         else
         {
-            System.out.println("No");
+            System.out.println("no");
         }
-
     }
 }
