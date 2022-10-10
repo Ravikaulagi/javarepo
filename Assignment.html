@@ -1,216 +1,64 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Color Game</title>
-</head>
-<style>
-	body {
-	background-color: #232323;
-	font-family: "Raleway";
-
-}
-
-#assign {
-	max-width: 600px;
-	margin: 0 auto;
-	padding-top: 20px;
-
-}
-.colorone {
-	width: 30%;
-	background-color: balck;
-	padding-bottom: 30%;
-	float: left;
-	margin: 1.66%;
-	
-} 
-
-h1 {
-	color: white;
-	background-color: red;
-	font-size: 20px;
-	text-align: center;
-	padding: 10px 0;
-}
-
-#display {
-	display: block;
-	font-size: 10px
-}
-
-#passing {
-	background: white;
-	height: 30px;
-	text-align: center;
-	color: black;
-}
-
-#message {
-	
-	color: #2C8E99;
-	font-size: 1.5em;
-	display: inline-block;
-	width: 20%;
-}
-
-button {
-	
-	color: #2C8E99;
-	font-family: blue;
-	font-size: 1.5em;
-	background-color: white;
-	height: 100%;
-	letter-spacing: 1px;
-	
-}
-
-button:hover {
-	background-color: #2C8E99;
-	color: white;
-}
-
-.selected {
-	background-color: #2C8E99;
-	color: white;
-}
-
-
-
-</style>
-
-<body>
-	<h1>The Great <span id="display">RGB</span> Guessing Game</h1>
-	<div id ="passing">
-		<button id="reset">New Colors</button>
-		<span id="message"></span>
-		<button class="mode">Easy</button>
-		<button class="mode selected">Hard</button>
-	</div>
-	<div id="assign">
-		<div class="colorone"></div>
-		<div class="colorone"></div>
-		<div class="colorone"></div>
-		<div class="colorone"></div>
-		<div class="colorone"></div>
-		<div class="colorone"></div>
-		<div class="colorone"></div>
-		<div class="colorone"></div>
-		<div class="colorone"></div>
-		<div class="colorone"></div>
-		<div class="colorone"></div>
-		<div class="colorone"></div>
-	</div>
- <script>
-	let numcolorones = 12;
-let colors = [];
-let fromchoosencolor;
-
-let colorones = document.querySelectorAll(".colorone");
-let colorDisplay = document.querySelector("#display");
-let mdis = document.querySelector("#message");
-let h1 = document.querySelector("h1");
-let rb = document.querySelector("#reset");
-let mb= document.querySelectorAll(".mode");
-let easyButton = document.querySelector(".mode");
-
-init();
-
-function init() {
-	colorDisplay.textContent = fromchoosencolor;
-	one();
-	two();
-	three();
-}
-
-rb.addEventListener("click", function() {
-	three();
-});
-
-function one() {
-	for (let i = 0; i < colorones.length; i++) {
-		
-		colorones[i].style.backgroundColor = colors[i];
-		colorones[i].addEventListener("click", function() {
-			if(i==3)
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>assignment</title>
+	<style> 
+	   
+		.one
 		{
-			colorones[i].style.backgroundColor = colors[i]; 
-			this.style.backgroundColor = "#232323";	
+			text-align: center;
+			color:black;
+			background-color: blueviolet;
+			padding: 15px
 		}
-			let clickedColor = this.style.backgroundColor;
-				 if(clickedColor === fromchoosencolor) {
-				mdis.textContent = "Correct";
-				rb.textContent = "Play";
-				
-			}
-			else {
-				this.style.backgroundColor = "#232323";
-				mdis.textContent = "try again";
-			}
-		});
-	}
-}
+		.two
+		{
+			word-spacing: 20px;
+			padding-left: 500px;
+			background-color:brown;
+		}
 
-function two() {
-	for(let i = 0; i < mb.length; i++) {
-		mb[i].addEventListener("click", function() {
-			for (let i = 0; i < mb.length; i++) {
-				mb[i].classList.remove("selected");
-			}
-			this.classList.add("selected");
-			if (this.textContent === "Easy") {
-				numcolorones = 6;
-			}
-			else {
-				numcolorones = 12;
-			}
-			three();
-
-		});
-	}
-}
-
-function three() {
-	colors = genRandomColors(numcolorones);
-	fromchoosencolor = chooseColor();
-	colorDisplay.textContent = fromchoosencolor;
-	h1.style.backgroundColor = "#2C8E99";
-	rb.textContent = "New Colors";
-	mdis.textContent = "";
-	for (let i = 0; i < colorones.length; i++) {
-		if(colors[i]) 
-		{ 
-			colorones[i].style.display = "block";
-			colorones[i].style.backgroundColor = colors[i];
+		.three
+	    {     background-color: cadetblue; 
+			  float:left;
+			  size: 200px;
+			  width: 1100px;
+			  height: 500px;
+			  padding-left:500px;
+			  column-gap: 20px;
+			  
 		}
 		
-	}
-}
+	   
+	</style>
+</head>
+<body>
+	<div class="one">
+		<h1>THE GREAT <div>RGB</div> GUESSING GAME</h1>
+	</div>
 
-function changeColors(color) {
-	for(let i = 0; i < colorones.length; i++) {
-		
-		h1.style.backgroundColor = color;
-	}
-}
 
-function chooseColor() {
-	let random = Math.floor(Math.random() * colors.length);
-	return colors[random];
-}
+	<div class="two">
+	<input type="button"; value="NEW COLORS";>
+	<input type="button"; value="EASY";>
+	<input type="button"; value="HARD";>
+    </div>
 
-function genRandomColors(num) {
-	let arr = [];
-	for (let i = 0; i < num; i++) {
-		arr.push(mathColor());
-	}
-	return arr;
-}
 
-function mathColor() {
-	let r = Math.floor(Math.random() * 256);
-	let g = Math.floor(Math.random() * 256);
-	let b = Math.floor(Math.random() * 256);
-	return "rgb(" + r + ", " + g + ", " + b + ")"; 
-}
- </script>
-</body>
-</html>
+      <div class="three">
+     <input type="color"; value="#ff0000">
+	 <input type="color"; value="#8a2be2">
+	 <br><br>
+	 <input type="color"; value="#a52a2a">
+	 <input type="color"; value="#5f9ea0">
+	 <br><br>
+	 <input type="color"; value="#7fff00">
+	 <input type="color"; value="#ff7f50">
+	 <br><br>
+		</div>    
+	
+    </body>
+   </html>
